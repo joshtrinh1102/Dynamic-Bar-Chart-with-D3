@@ -1,5 +1,5 @@
 function main(){
-    var bardata=[100,400,800,500,1600]
+    var bardata=[100, 420, 230, 850, 560, 925]
     var width = 500;
     var barHeight = 20;
     margin=1
@@ -22,12 +22,15 @@ function main(){
             .attr('width',function(d){
             return scale(d) ;
     })                
-            .attr('height', barHeight -margin)
+            .attr('height', barHeight -margin)///Render bars and group elements based on scaled data
     bar.append('text')
             .attr('x', function(d){
             return (scale(d));
     })
             .attr('y', barHeight /2)
             .attr('dy', '.35em')
-            .text(function(d) {return d;});
+            .text(function(d) {return d;});/.
+
+    
+    
     }
