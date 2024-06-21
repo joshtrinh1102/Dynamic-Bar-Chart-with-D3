@@ -25,11 +25,11 @@ function main(){
             .attr('height', barHeight -margin)///Render bars and group elements based on scaled data
     bar.append('text')
             .attr('x', function(d){
-            return (scale(d));
+            return (scale(d));//Add text labels to bars
     })
             .attr('y', barHeight /2)
             .attr('dy', '.35em')
-            .text(function(d) {return d;});/.
+            .text(function(d) {return d;});
 
     
     
