@@ -31,6 +31,32 @@ function main(){
             .attr('dy', '.35em')
             .text(function(d) {return d;});
 
-    
-    
+    bar.selectAll(".bar")
+    //Implement transitions and hover effects for bars
+    .on("mouseover",onMouseOver)
+    .on("mouseout",onMouseOut)
+    .transition()
+    .ease(d3.easeLinear)
+    .duration(500)
+    .delay(function(d,i){return i * 50})
+    //mouse over
+    function onMouseOver(d,i){
+        d3.select(this).attr('class','highlight')
+        d3.select(this)
+            .transition()
+            .duration(500)
+            .attr('width', xScale.bandwidth()+5)
+            .attr('y', function(d){return yScale(d.value)-10;})
+            .attr('height', function(d){return height - yScale(d.value) + 10;})
+    }
+    //mouseout
+    function onMouseOut(d, i){
+        d3.select(this).attr('class','bar')
+        d3.select(this)
+                .transition()
+                .duration(500)
+                .attr('width', xScale.bandwidth())
+                .attr('y', function(d){return yScale(d.value);})
+                .attr('height', function(d){return height - yScale(d.value);})
+    }
     }
