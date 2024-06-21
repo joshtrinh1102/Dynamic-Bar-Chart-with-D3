@@ -1,13 +1,17 @@
 function main(){
-    var bardata=[1,2,2,3]
+    var bardata=[100,400,800,500,1600]
     var width = 500;
     var barHeight = 20;
-    var scaleFactor= 10 ;
+    margin=1
+
 
     var graph= d3.select("body")
                     .append("svg")
                     .attr("width",width)
                     .attr("height", barHeight * bardata.length)
+    var scale= d3.scaleLinear()
+                    .domain([d3.min(bardata), d3.max(bardata)])
+                    .range([50,500])
     var bar= graph.selectAll("g")
                     .data(bardata)
                     .enter().append("g")
@@ -16,12 +20,12 @@ function main(){
                     });
     bar.append("rect")
             .attr('width',function(d){
-            return d * scaleFactor;
+            return scale(d) ;
     })                
-            .attr('height', barHeight -1)
+            .attr('height', barHeight -margin)
     bar.append('text')
             .attr('x', function(d){
-            return (d*scaleFactor);
+            return (scale(d));
     })
             .attr('y', barHeight /2)
             .attr('dy', '.35em')
