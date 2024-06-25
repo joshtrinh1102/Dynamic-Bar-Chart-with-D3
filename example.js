@@ -21,29 +21,23 @@ function main(){
     bar.append("rect")
             .attr('width',function(d){
             return xScale(d) ;
-    })                
+    }) 
+                .attr('fill','lightpink')               
             .attr('height', barHeight -margin)///Render bars and group elements based on scaled data
     bar.append('text')
             .attr('x', function(d){
-            return (xScale(d));s
+            return (xScale(d));
     })
             .attr('y', barHeight /2)
             .attr('dy', '.35em')
             .text(function(d) {return d;});//Add text labels to bar
-
-    bar.selectAll("rect")
     //Implement transitions and hover effects for bars
-        .on("mouseover", function() {
-            d3.select(this)
-            .transition()
-            .duration(300)
-            .attr("fill", "greenyellow"); 
+    bar.select("rect")
+    .on("mouseover", function () {
+        d3.select(this).attr("fill", "greenyellow");
     })
-        .on("mouseout", function() {
-        d3.select(this)
-          .transition()
-          .duration(300)
-          .attr("fill", "turquoise"); 
-
-    })
+    .on("mouseout", function () {
+            d3.select(this).attr("fill", "lightpink");
+    });
 }
+
